@@ -1,40 +1,42 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { FirebaseService } from "./firebase.service";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { FirebaseService } from './firebase.service';
 
 @Controller('firebase')
 export class FirebaseController {
-  constructor(private readonly firebaseService: FirebaseService) { }
+  constructor(private readonly firebaseService: FirebaseService) {}
 
-  @Post('create/:collection')
-  async create(
-    @Param('collection') collection: string,
-    @Body() body: any
-  ) {
-    return this.firebaseService.create(collection, body);
+  @Post(':collection')
+  async create(@Param('collection') collection: string, @Body() body: any) {
+    return this.firebaseService.createRecord(collection, body);
   }
 
-  @Get('read/:collection/:id')
-  async read(
-    @Param('collection') collection: string,
-    @Param('id') id: string
-  ) {
+  @Get(':collection/:id')
+  async read(@Param('collection') collection: string, @Param('id') id: string) {
     return this.firebaseService.readRecord(collection, id);
   }
 
-  @Put('update/:collection/:id')
+  @Put(':collection/:id')
   async update(
     @Param('collection') collection: string,
     @Param('id') id: string,
-    @Body() body: any
+    @Body() body: any,
   ) {
-    return this.firebaseService.updateRecord(collection, id, body)
+    return this.firebaseService.updateRecord(collection, id, body);
   }
 
-  @Delete('delete/:collection/:id')
+  @Delete(':collection/:id')
   async delete(
     @Param('collection') collection: string,
-    @Param('id') id: string
+    @Param('id') id: string,
   ) {
-    return this.firebaseService.deleteRecord(collection, id)
+    return this.firebaseService.deleteRecord(collection, id);
   }
 }

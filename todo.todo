@@ -1,0 +1,4 @@
+- Migrate Jest to Vitest
+  - https://blog.ablo.ai/jest-to-vitest-in-nestjs
+  - https://carbonate.dev/blog/posts/migrating-from-jest-to-vitest
+  - https://keploy.io/blog/community/migrate-from-jest-to-vitest#configuring-vitest
